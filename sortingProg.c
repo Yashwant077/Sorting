@@ -117,6 +117,59 @@ void quickSort(int* A, int low, int high)
     }
 }
 
+void merge(int* A, int mid, int low, int high)
+{
+    int i,j,k,B[high+1];
+    i=low;
+    j=mid+1;
+    k=low;
+    
+    while(i<=mid && j<=high)
+    {
+        if(A[i]>A[j])
+        {
+            B[k]=A[j];
+            k++;
+            j++;
+        }
+        else
+        {
+            B[k]=A[i];
+            k++;
+            i++;
+        }
+    }
+    while(i<=mid)
+    {
+        B[k] = A[i];
+        k++;
+        i++;
+    }
+    while(j<=high)
+    {
+        B[k] = A[j];
+        k++;
+        j++;
+    }
+    
+    for(int m=low; m<=high;m++)     //Copying B to A
+    {
+        A[m]=B[m];
+    }
+}
+
+void mergeSort(int* A,int low, int high)
+{
+    int mid;
+    if(low<high)
+    {
+        mid = (low+high)/2;
+        mergeSort(A,low,mid);
+        mergeSort(A,mid+1,high);
+        merge(A,mid,low,high);
+    }
+}
+
 int main()
 {
     int *ptr;
@@ -149,6 +202,7 @@ int main()
                "\n2. Insertion Sort"
                "\n3. Selection Sort"
                "\n4. Quick Sort"
+               "\n5. Merge Sort"
                "\n0. Quit\n");
         scanf("%d",&ch);
         
@@ -170,7 +224,14 @@ int main()
                 printArray(ptr,n);
                 break;
             case 4:
+                printf("\nQuick Sort is Running...");
                 quickSort(ptr,0,n-1);
+                printf("\nSorted elements::");
+                printArray(ptr,n);
+                break;
+            case 5:
+                printf("\nMerge Sort is Running...");
+                mergeSort(ptr,0,n-1);
                 printf("\nSorted elements::");
                 printArray(ptr,n);
                 break;
