@@ -1,6 +1,6 @@
 Sorting
 =======
-Here, I am putting a program in C language which is able to perform any of the basic sorting algorithm on a given array.  
+In this repository, you will find a C language program capable of performing various basic sorting algorithms on a given array.      
 
 Sorting Algorithms
 ------------------
